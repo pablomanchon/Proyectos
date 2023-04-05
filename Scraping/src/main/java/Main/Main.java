@@ -1,5 +1,7 @@
 package Main;
 
+import BaseDatos.PrendaJpaController;
+import GUI.MenuPrincipal;
 import Logica.Control;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,6 +13,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         Control c = new Control();
-        c.ExtraerElementos();
+//        c.ActualizarElementos();
+//        c.subirPrendas();
+        MenuPrincipal menu = new MenuPrincipal();
+                
     }
 }
