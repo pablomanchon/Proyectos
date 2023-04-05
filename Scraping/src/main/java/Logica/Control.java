@@ -71,6 +71,7 @@ public class Control {
                 .sorted(Comparator.comparing(Prenda::getNombre))
                 .collect(Collectors.toList());
     }
+    
     public List<Icon> extraerIconos(){
         extraerPrendas();
         List<Icon> iconos = new ArrayList();
@@ -98,9 +99,9 @@ public class Control {
             img = new ImageIcon(imagen);
 
         } catch (MalformedURLException e) {
-            System.out.println("Hola");
+            System.out.println(e);
         } catch (IOException e) {
-            System.out.println("Error2");
+            System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
