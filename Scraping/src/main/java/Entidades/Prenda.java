@@ -1,11 +1,12 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 @Entity
 public class Prenda implements Serializable {
@@ -17,23 +18,35 @@ public class Prenda implements Serializable {
     private String nombre;
     private String marca;
     private double precio;
-    private ImageIcon imagen;
+    private Icon imagen;
+    ArrayList<String> caracteristicas;
 
     public Prenda() {
     }
 
-    public Prenda(String nombre, String marca, double precio, ImageIcon imagen) {
+    public Prenda(String nombre, String marca, double precio, Icon imagen, ArrayList<String> caracteristicas) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
         this.imagen = imagen;
+        this.caracteristicas = caracteristicas;
     }
 
-    public ImageIcon getImagen() {
+    public ArrayList<String> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(ArrayList<String> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    
+
+    public Icon getImagen() {
         return imagen;
     }
 
-    public void setImagen(ImageIcon imagen) {
+    public void setImagen(Icon imagen) {
         this.imagen = imagen;
     }
 
@@ -60,8 +73,6 @@ public class Prenda implements Serializable {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -91,9 +102,4 @@ public class Prenda implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Entidades.Prenda[ id=" + id + " ]";
-    }
-    
 }

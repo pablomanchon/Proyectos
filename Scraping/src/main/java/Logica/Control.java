@@ -15,9 +15,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.jsoup.nodes.Element;
 
 public class Control {
-    
+
     private ControlCrud crudPrenda = new ControlCrud();
     private List<Prenda> prendas = new ArrayList();
 
@@ -47,14 +48,13 @@ public class Control {
 
                     String ID = extraerID(nombreYID);
 
-                    ImageIcon imagen = extraerImagen(elProducto);
+                    System.out.println(nombre);
+                    System.out.println(ID);
+                    ArrayList<String> caracteristicas = extraerCaracteristicas(elProducto);
 
-                    System.out.println("Nombre: " + nombre);
-                    System.out.println("ID: " + ID);
-                    System.out.println("Marca: " + marca);
-                    System.out.println("Precio: " + precio);
+                    Icon imagen = extraerImagen(elProducto);
 
-                    prendas.add(new Prenda(nombre, marca, precio, imagen));
+                    prendas.add(new Prenda(nombre, marca, precio, imagen, caracteristicas));
                 }
             } catch (IOException e) {
                 System.out.println(e);
@@ -63,55 +63,64 @@ public class Control {
             }
         }
     }
-    
-    public void extraerPrendas(){
+
+    public List<Prenda> extraerPrendas() {
         prendas.clear();
         prendas = crudPrenda.obtenerPrendas();
         prendas = prendas.stream()
                 .sorted(Comparator.comparing(Prenda::getNombre))
                 .collect(Collectors.toList());
+        return prendas;
     }
-    
-    public List<Icon> extraerIconos(){
-        extraerPrendas();
-        List<Icon> iconos = new ArrayList();
-        for (Prenda prenda : prendas) {
-            ImageIcon imagen = prenda.getImagen();
-            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(300,300,Image.SCALE_DEFAULT));
-            iconos.add(icono);
-        }
-        return iconos;
-    }
-    
-    public void subirPrendas(){
+
+    public void subirPrendas() {
         for (Prenda prenda : prendas) {
             crudPrenda.crearPrenda(prenda);
         }
     }
 
-    private ImageIcon extraerImagen(Elements elProducto) {
+    private Icon extraerImagen(Elements elProducto) {
         String imagenSrc = elProducto.get(1).getElementsByClass("trsn w-100").attr("src");
-        System.out.println(imagenSrc);
-        ImageIcon img = null;
+        Icon img = null;
         try {
             URL url = new URL(imagenSrc);
             Image imagen = ImageIO.read(url);
             img = new ImageIcon(imagen);
-
-        } catch (MalformedURLException e) {
-            System.out.println(e);
         } catch (IOException e) {
-            System.out.println(e);
-        } catch (Exception e) {
             System.out.println(e);
         }
         return img;
+    }
+
+    public Icon extraerIcono(ImageIcon imagen) {
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(300, 300, Image.SCALE_DEFAULT));
+        return icono;
     }
 
     private String extraerID(String nombreYID) {
         String ID = nombreYID.replaceAll("[a-zA-Z]", "");
         ID = ID.replaceAll(" ", "");
         return ID;
+    }
+
+    private ArrayList<String> extraerCaracteristicas(Elements elProducto) {
+        ArrayList<String> caracteristicas = new ArrayList();
+
+        Elements descripcion = elProducto.get(1).getElementById("collapseDescription").getElementsByTag("ul");
+
+        try {
+            Elements c = descripcion.get(0).getElementsByTag("li");
+            for (Element element : c) {
+                caracteristicas.add("- " + element.text());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        for (String aux : caracteristicas) {
+            System.out.println(aux);
+        }
+        return caracteristicas;
     }
 
     private String extraerNombreyID(Elements elProducto) {
@@ -145,4 +154,5 @@ public class Control {
             System.out.println(prenda.getNombre());
         }
     }
+
 }
