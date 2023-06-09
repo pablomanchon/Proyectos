@@ -2,11 +2,11 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.swing.Icon;
 
 @Entity
 public class Prenda implements Serializable {
@@ -17,37 +17,27 @@ public class Prenda implements Serializable {
     private Long id;
     private String nombre;
     private String marca;
-    private double precio;
-    private Icon imagen;
+    private Float precio;
+    private ArrayList<String> imagenes;
     ArrayList<String> caracteristicas;
 
     public Prenda() {
     }
 
-    public Prenda(String nombre, String marca, double precio, Icon imagen, ArrayList<String> caracteristicas) {
+    public Prenda(String nombre, String marca, Float precio, ArrayList<String> imagenes, ArrayList<String> caracteristicas) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
-        this.imagen = imagen;
+        this.imagenes = imagenes;
         this.caracteristicas = caracteristicas;
     }
 
-    public ArrayList<String> getCaracteristicas() {
-        return caracteristicas;
+    public Long getId() {
+        return id;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    
-
-    public Icon getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(Icon imagen) {
-        this.imagen = imagen;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -66,40 +56,27 @@ public class Prenda implements Serializable {
         this.marca = marca;
     }
 
-    public double getPrecio() {
+    public Float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Float precio) {
         this.precio = precio;
     }
 
-    public Long getId() {
-        return id;
+    public ArrayList<String> getImagenes() {
+        return imagenes;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setImagenes(ArrayList<String> imagenes) {
+        this.imagenes = imagenes;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public ArrayList<String> getCaracteristicas() {
+        return caracteristicas;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prenda)) {
-            return false;
-        }
-        Prenda other = (Prenda) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setCaracteristicas(ArrayList<String> caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
-
 }

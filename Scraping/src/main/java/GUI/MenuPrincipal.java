@@ -48,6 +48,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
         selectColor4 = new javax.swing.JComboBox<>();
         layerPanel = new javax.swing.JLayeredPane();
         panelProductos = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         panelProducto = new javax.swing.JPanel();
         iconoProd = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -172,25 +173,39 @@ public final class MenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(selectColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(selectColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(selectColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(selectColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(selectColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(selectColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(selectColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(selectColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
         panelProductos.setBackground(new java.awt.Color(255, 204, 0));
         panelProductos.setBorder(null);
         panelProductos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 614, Short.MAX_VALUE)
+        );
+
+        panelProductos.setViewportView(jPanel3);
 
         panelProducto.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -374,13 +389,9 @@ public final class MenuPrincipal extends javax.swing.JFrame {
 
     public void llenarPanelProductos() {
         for (Prenda prenda : prendas) {
-            ImageIcon imagen = (ImageIcon) prenda.getImagen();
-            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(300, 300, Image.SCALE_DEFAULT));
             JLabel label = new JLabel();
             label.setCursor(new Cursor(Cursor.HAND_CURSOR));
             modificarLabel(prenda, label);
-            label.setSize(icono.getIconWidth(), icono.getIconHeight());
-            label.setIcon(icono);
             panelProd.add(label);
         }
         this.repaint();
@@ -400,10 +411,6 @@ public final class MenuPrincipal extends javax.swing.JFrame {
 
             private void clickEnIcono(MouseEvent evt) {
                 layerPanel.moveToBack(layerPanel.getComponent(0));
-
-                ImageIcon imagen = (ImageIcon) prenda.getImagen();
-                Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT));
-                iconoProd.setIcon(icono);
                 nombreLbl.setText("Nombre: " + prenda.getNombre());
                 precioLbl.setText("Precio: $" + String.valueOf(prenda.getPrecio()));
                 marcaLbl.setText("Marca: " + prenda.getMarca());
@@ -431,6 +438,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLayeredPane layerPanel;

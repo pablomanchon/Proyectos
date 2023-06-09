@@ -1,0 +1,149 @@
+.cartas {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.carta {
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 39rem;
+  height: 55rem;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  background-color: burlywood;
+  box-shadow: 0 0 10px white;
+  transition: 0.4s;
+  &:hover {
+    box-shadow: 0 0 10px black;
+  }
+}
+#precio {
+  font-size: 3rem;
+  color: darkgreen;
+}
+.prenda {
+  margin-top: 2rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-direction: column;
+  #precio {
+    font-size: 5rem;
+  }
+  .caracteristicas {
+    margin-left: 3rem;
+  }
+  .imagenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    .caracteristicas {
+      h3 {
+        align-self: flex-start;
+        font-size: 3rem;
+      }
+    }
+    .boton {
+      width: 35rem;
+    }
+  }
+  img {
+    width: 40rem;
+    height: 40rem;
+    cursor: none;
+  }
+  #titulo {
+    font-size: 3rem;
+    color: brown;
+  }
+}
+.imgs {
+  display: flex;
+  gap: 1rem;
+  .imagen {
+    width: 9rem;
+    cursor: pointer;
+    height: 9rem;
+    border-radius: 5rem;
+    transition: 0.4s;
+    &:hover {
+      box-shadow: 0 0 10px black;
+    }
+  }
+  #seleccionada {
+    box-shadow: 0 0 10px black;
+    width: 10rem;
+    height: 10rem;
+  }
+}
+.caracteristicas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  #car {
+    align-self: flex-start;
+  }
+}
+img {
+  width: 95%;
+  height: 35rem;
+  object-fit: fill;
+  top: 0;
+  left: 0;
+  border-radius: 1rem;
+}
+.boton {
+  font-size: 2rem;
+  font-weight: 700;
+  color: blue;
+  cursor: pointer;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 1rem 3rem;
+  background-color: bisque;
+  box-shadow: 0 0 10px black;
+  transition: 0.4s;
+  &:hover {
+    box-shadow: 0 0 10px blue;
+  }
+}
+.zoom-container {
+  position: relative;
+  display: inline-block;
+}
+.zoom-container {
+  position: relative;
+  display: inline-block;
+}
+
+.zoom-image {
+  display: block;
+}
+
+.zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px; /* Ajusta el ancho de la lupa según tus necesidades */
+  height: 150px; /* Ajusta la altura de la lupa según tus necesidades */
+  border: 2px solid #000;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: opacity 0.3s ease;
+}
