@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/prendas")
 public class ControladorPrenda {
     @Autowired
     ServicioPrenda servicioPrenda;
 
-    @GetMapping("/")
+    @GetMapping("/lista")
     public String ListarPrendas(ModelMap modelo) {
         List<Prenda> prendas = servicioPrenda.listarPrendas();
         modelo.put("prendas", prendas);
         return "lista-prendas.html";
     }
 
-    @GetMapping("/Prenda/{id}")
+    @GetMapping("/prenda/{id}")
     public String mostrarPrenda(@PathVariable Long id, ModelMap modelo) {
         Prenda prenda = servicioPrenda.buscarPorId(id);
         modelo.put("prenda", prenda);
