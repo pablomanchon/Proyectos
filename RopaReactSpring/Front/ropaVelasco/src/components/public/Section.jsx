@@ -10,7 +10,7 @@ function Section({ children }) {
   return (
     <section ref={ref}>
       <div
-        className="carta"
+        className="cartas"
         style={{
           transform: isInView ? "none" : "translateX(-200px)",
           opacity: isInView ? 1 : 0,

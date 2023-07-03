@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
+import "../../App.css";
 
 export const Cards = () => {
   const [prendas, setPrendas] = useState([]);
@@ -13,9 +14,11 @@ export const Cards = () => {
   };
   return (
     <>
-      {prendas.map((prenda, i) => (
-        <Card prenda={prenda} key={i} />
-      ))}
+      <div className="cartas">
+        {prendas.map((prenda, i) => (
+          <Card prenda={prenda} key={i} />
+        ))}
+      </div>
     </>
   );
 };

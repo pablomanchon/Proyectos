@@ -1,35 +1,41 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Card } from "./Card";
-import { CarrouselItem } from "./CarrouselItem";
+import { useEffect, useRef, useState } from "react";
+import { Item } from "./Item";
+import Section from "./Section";
+import anime from "../../../node_modules/animejs/lib/anime.es.js";
+import { useInView } from "framer-motion";
 
 export const Index = () => {
   const [prendas, setPrendas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     getCards();
   }, []);
-  const [itemsCar, setItemsCar] = useState([]);
-  const getCards = async () => {
-    try {
-      const result = await fetch("http://localhost:8080/prendas/lista");
-      const data = await result.json();
-      setPrendas(data);
-      setLoading(false);
-    } catch (e) {
-      console.log("error", e);
-    }
+
+  const getCards = () => {
+    axios
+      .get("http://localhost:8080/prendas/lista")
+      .then((response) => {
+        setPrendas(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        alert(`alerta! : ${error.message}`);
+      });
   };
+
+  const getRandomObjects = () => {
+    const arrayMezclado = prendas.sort(() => 0.5 - Math.random());
+    return arrayMezclado.splice(0, 2);
+  };
+
+  const randomObjects = getRandomObjects();
+
   if (loading) {
     return <div>Cargando</div>;
-  } else {
-    const rand = Math.floor(Math.random() * prendas.length - 1);
-    for (let i = 0; i < 2; i++) {
-      if (!itemsCar.includes(prendas[rand])) {
-        itemsCar.push(prendas[rand]);
-      }
-    }
   }
   return (
     <>
@@ -60,63 +66,14 @@ export const Index = () => {
             className=""></button>
         </div>
         <div className="carousel-inner">
+          <div className="carousel-item">
+            <Section>{mostrarPrendasCarrousel()}</Section>
+          </div>
           <div className="carousel-item active">
-            <svg
-              className="bd-placeholder-img"
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false">
-              <rect
-                width="100%"
-                height="100%"
-                fill="var(--bs-secondary-color)"></rect>
-            </svg>
-            <div className="container">
-              <div className="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>
-                  Some representative placeholder content for the second slide
-                  of the carousel.
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#">
-                    Learn more
-                  </a>
-                </p>
-              </div>
-            </div>
+            <Section>{mostrarPrendasCarrousel()}</Section>
           </div>
           <div className="carousel-item">
-            <svg
-              className="bd-placeholder-img"
-              width="100%"
-              height="100%"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false">
-              <rect
-                width="100%"
-                height="100%"
-                fill="var(--bs-secondary-color)"></rect>
-            </svg>
-            <div className="container">
-              <div className="carousel-caption text-end">
-                <h1>One more for good measure.</h1>
-                <p>
-                  Some representative placeholder content for the third slide of
-                  this carousel.
-                </p>
-                <p>
-                  <a className="btn btn-lg btn-primary" href="#">
-                    Browse gallery
-                  </a>
-                </p>
-              </div>
-            </div>
+            <Section>{mostrarPrendasCarrousel()}</Section>
           </div>
         </div>
         <button
@@ -142,4 +99,34 @@ export const Index = () => {
       </div>
     </>
   );
+
+  function mostrarPrendasCarrousel() {
+    return randomObjects.map((prenda, i) => {
+      if ((i + 1) % 2 == 0) {
+        return (
+          <>
+            <div
+              ref={ref}
+              className="card-left"
+              style={{
+                transform: "translateX(0)",
+                padding: "1rem",
+                opacity: 1,
+                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
+              }}>
+              <Item prenda={prenda} />
+            </div>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <div className="card-right">
+              <Item prenda={prenda} />
+            </div>
+          </>
+        );
+      }
+    });
+  }
 };

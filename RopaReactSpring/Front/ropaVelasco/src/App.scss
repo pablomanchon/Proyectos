@@ -14,26 +14,29 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.6666666667));
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
 
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.6666666667));
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
+
 .card {
   padding: 2em;
   font-size: 20px;
@@ -84,10 +87,11 @@
   border-radius: 1rem;
   box-shadow: 0px 0px 8px black;
 }
-
-.carousel-item section {
-  height: auto;
-  background-color: black;
+.carousel-item {
+  section {
+    height: auto;
+    background-color: black;
+  }
 }
 
 .item-car {
@@ -98,45 +102,47 @@
   gap: 1rem;
   background-color: rgb(255, 218, 173);
   justify-content: space-evenly;
-}
-.item-car .caracteristicas {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.item-car .caracteristicas #precio {
-  color: green;
-  font-size: 3rem;
-}
-.item-car .caracteristicas h3 {
-  font-size: 20px;
-}
-.item-car .caracteristicas #titulo {
-  font-weight: 800;
-}
-.item-car .caracteristicas ul {
-  list-style: none;
-  text-align: left;
-}
-.item-car .botones {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  .caracteristicas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    #precio {
+      color: green;
+      font-size: 3rem;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    #titulo {
+      font-weight: 800;
+    }
+    ul {
+      list-style: none;
+      text-align: left;
+    }
+  }
+  .botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .item-car {
     flex-direction: column;
-  }
-  .item-car .caracteristicas ul {
-    text-align: center;
-  }
-  .item-car .caracteristicas .botones {
-    flex-direction: column;
-    margin: 0 2rem;
+    .caracteristicas {
+      ul {
+        text-align: center;
+      }
+      .botones {
+        flex-direction: column;
+        margin: 0 2rem;
+      }
+    }
   }
   .card-left,
   .card-right {
     min-width: 30rem;
   }
-}/*# sourceMappingURL=App.css.map */
+}
