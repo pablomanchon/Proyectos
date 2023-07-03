@@ -23,19 +23,7 @@ public class ControladorPrenda {
     public List<Prenda> ListarPrendas() {
         return repositorioPrenda.findAll();
     }
-
-    @GetMapping("/listaAlAzar/{cant}")
-    public List<Prenda> ListaAlAzar(@RequestParam("cant") String cant) {
-        System.out.println(cant);
-        List <Prenda> prendas = repositorioPrenda.findAll();
-        List <Prenda> lista = new ArrayList<>();
-        Random rnd = new Random();
-        for (int i = 0; i < 3; i++) {
-            lista.add(prendas.get(rnd.nextInt(prendas.toArray().length)));
-        }
-        System.out.println(lista);
-        return lista;
-    }
+    
     @PostMapping("/crear")
     Prenda crearPrenda(@RequestBody Prenda prenda) {
         return repositorioPrenda.save(prenda);

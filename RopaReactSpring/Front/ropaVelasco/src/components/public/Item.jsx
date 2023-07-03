@@ -2,7 +2,6 @@
 import "../../App.css";
 
 export const Item = ({ prenda }) => {
-  console.log(prenda);
   return (
     <>
       <div className="item-car">
@@ -14,8 +13,8 @@ export const Item = ({ prenda }) => {
           <ul>{mostrarCaracteristcias(prenda.caracteristicas)}</ul>
           <h3 id="precio">${prenda.precio}</h3>
           <div className="botones">
-            <button className="btn btn-primary">Agregar al carrito</button>
-            <button className="btn btn-primary">Detalles</button>
+            <button className="boton-carrito">Agregar al carrito</button>
+            <button className="boton-detalles">Detalles</button>
           </div>
         </div>
       </div>
@@ -27,7 +26,7 @@ const mostrarCaracteristcias = (caracteristicas) => {
     const car = [];
     for (let i = 0; i < 3; i++) {
       try {
-        car.push(<li>{caracteristicas[i]}</li>);
+        car.push(<li key={i}>{caracteristicas[i]}</li>);
       } catch (e) {
         continue;
       }

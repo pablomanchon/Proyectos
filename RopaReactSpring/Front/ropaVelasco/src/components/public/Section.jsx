@@ -6,7 +6,6 @@ import "../../styles.css";
 function Section({ children }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  console.log(children);
   return (
     <section ref={ref}>
       <div

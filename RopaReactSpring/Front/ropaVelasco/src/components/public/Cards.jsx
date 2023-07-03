@@ -8,10 +8,18 @@ export const Cards = () => {
   useEffect(() => {
     getCards();
   }, []);
+
   const getCards = async () => {
-    const result = await axios.get("http://localhost:8080/prendas/lista");
-    setPrendas(result.data);
+    await axios
+      .get("http://localhost:8080/prendas/lista")
+      .then((response) => {
+        setPrendas(response.data);
+      })
+      .catch(() => {
+        alert("Error al extraer los datos");
+      });
   };
+
   return (
     <>
       <div className="cartas">

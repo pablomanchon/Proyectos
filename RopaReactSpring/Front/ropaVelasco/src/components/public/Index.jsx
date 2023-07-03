@@ -2,14 +2,11 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Item } from "./Item";
 import Section from "./Section";
-import anime from "../../../node_modules/animejs/lib/anime.es.js";
-import { useInView } from "framer-motion";
 
 export const Index = () => {
   const [prendas, setPrendas] = useState([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     getCards();
@@ -22,8 +19,8 @@ export const Index = () => {
         setPrendas(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        alert(`alerta! : ${error.message}`);
+      .catch(() => {
+        alert("Error al conectar con la Base de Datos");
       });
   };
 
@@ -35,7 +32,11 @@ export const Index = () => {
   const randomObjects = getRandomObjects();
 
   if (loading) {
-    return <div>Cargando</div>;
+    return (
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
   }
   return (
     <>
@@ -104,27 +105,24 @@ export const Index = () => {
     return randomObjects.map((prenda, i) => {
       if ((i + 1) % 2 == 0) {
         return (
-          <>
-            <div
-              ref={ref}
-              className="card-left"
-              style={{
-                transform: "translateX(0)",
-                padding: "1rem",
-                opacity: 1,
-                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
-              }}>
-              <Item prenda={prenda} />
-            </div>
-          </>
+          <div
+            key={i}
+            ref={ref}
+            className="card-left"
+            style={{
+              transform: "translateX(0)",
+              padding: "1rem",
+              opacity: 1,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
+            }}>
+            <Item prenda={prenda} />
+          </div>
         );
       } else {
         return (
-          <>
-            <div className="card-right">
-              <Item prenda={prenda} />
-            </div>
-          </>
+          <div key={i} className="card-right">
+            <Item prenda={prenda} />
+          </div>
         );
       }
     });
