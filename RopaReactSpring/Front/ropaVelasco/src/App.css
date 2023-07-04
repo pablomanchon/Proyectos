@@ -66,16 +66,18 @@
   align-items: center;
 }
 
-.card-left {
-  align-self: flex-end;
+.card-left,
+.card-right {
   width: 70%;
   min-width: 50rem;
 }
 
 .card-right {
+  align-self: flex-end;
+}
+
+.card-right {
   align-self: flex-start;
-  width: 70%;
-  min-width: 50rem;
 }
 
 .image img {
@@ -111,10 +113,6 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.item-car .caracteristicas #precio {
-  color: green;
-  font-size: 3rem;
-}
 .item-car .caracteristicas h3 {
   font-size: 20px;
 }
@@ -124,6 +122,11 @@
 .item-car .caracteristicas ul {
   list-style: none;
   text-align: left;
+}
+
+#precio {
+  color: green;
+  font-size: 3rem;
 }
 
 .boton-carrito {
@@ -172,6 +175,8 @@ header .menu {
 header .menu li {
   font-family: "Amatic SC", cursive;
   font-size: 2rem;
+  cursor: pointer;
+  transition: 0.4s;
 }
 header .logo-nombre {
   display: flex;
@@ -192,6 +197,10 @@ header .logo-nombre #nombre {
 }
 header .logo-nombre #nombre span {
   font-family: "Amatic SC", cursive;
+}
+
+.prueba {
+  color: white;
 }
 
 @media (max-width: 768px) {

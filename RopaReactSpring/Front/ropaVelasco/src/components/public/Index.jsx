@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Item } from "./Item";
 import Section from "./Section";
+import { motion } from "framer-motion";
 
 export const Index = () => {
   const [prendas, setPrendas] = useState([]);
@@ -105,24 +106,38 @@ export const Index = () => {
     return randomObjects.map((prenda, i) => {
       if ((i + 1) % 2 == 0) {
         return (
-          <div
+          <motion.div
             key={i}
             ref={ref}
             className="card-left"
             style={{
-              transform: "translateX(0)",
-              padding: "1rem",
+              opacity: 0,
+              x: 200,
+            }}
+            whileInView={{
               opacity: 1,
+              x: 400,
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
             }}>
             <Item prenda={prenda} />
-          </div>
+          </motion.div>
         );
       } else {
         return (
-          <div key={i} className="card-right">
+          <motion.div
+            key={i}
+            className="card-right"
+            style={{
+              opacity: 0,
+              x: 200,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
+            }}>
             <Item prenda={prenda} />
-          </div>
+          </motion.div>
         );
       }
     });

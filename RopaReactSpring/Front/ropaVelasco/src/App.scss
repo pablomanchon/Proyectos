@@ -69,16 +69,16 @@ $textCard: rgb(255, 207, 159);
   align-items: center;
 }
 
-.card-left {
-  align-self: flex-end;
+.card-left,
+.card-right {
   width: 70%;
   min-width: 50rem;
 }
-
+.card-right {
+  align-self: flex-end;
+}
 .card-right {
   align-self: flex-start;
-  width: 70%;
-  min-width: 50rem;
 }
 
 .image img {
@@ -113,10 +113,6 @@ $textCard: rgb(255, 207, 159);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    #precio {
-      color: green;
-      font-size: 3rem;
-    }
     h3 {
       font-size: 20px;
     }
@@ -128,6 +124,10 @@ $textCard: rgb(255, 207, 159);
       text-align: left;
     }
   }
+}
+#precio {
+  color: green;
+  font-size: 3rem;
 }
 .boton-carrito {
   font-weight: 700;
@@ -171,6 +171,8 @@ header {
     li {
       font-family: "Amatic SC", cursive;
       font-size: 2rem;
+      cursor: pointer;
+      transition: 0.4s;
     }
   }
   .logo-nombre {
@@ -193,6 +195,9 @@ header {
       box-shadow: inset 0px 0px 30px black;
     }
   }
+}
+.prueba {
+  color: white;
 }
 @media (max-width: 768px) {
   .item-car {

@@ -1,9 +1,29 @@
+import { motion } from "framer-motion";
+
 export const Header = () => {
   return (
     <header>
       <ul className="menu">
-        <li>Home</li>
-        <li>Prendas</li>
+        <motion.li
+          whileInView={{
+            rotate: -5,
+            scale: 1.2,
+          }}
+          whileHover={{
+            scale: 1.5,
+          }}>
+          Home
+        </motion.li>
+        <motion.li
+          whileInView={{
+            rotate: 5,
+            scale: 1.2,
+          }}
+          whileHover={{
+            scale: 1.5,
+          }}>
+          Prendas
+        </motion.li>
       </ul>
       <div className="logo-nombre">
         <div id="logo" />
@@ -13,8 +33,26 @@ export const Header = () => {
         </h2>
       </div>
       <ul className="menu">
-        <li>Iniciar Sesion</li>
-        <li>Perfil</li>
+        <motion.li
+          whileInView={{
+            rotate: -5,
+            scale: 1.2,
+          }}
+          whileHover={{
+            scale: 1.5,
+          }}>
+          Iniciar Sesion
+        </motion.li>
+        <motion.li
+          whileInView={{
+            rotate: 5,
+            scale: 1.2,
+          }}
+          whileHover={{
+            scale: 1.5,
+          }}>
+          Perfil
+        </motion.li>
       </ul>
     </header>
   );

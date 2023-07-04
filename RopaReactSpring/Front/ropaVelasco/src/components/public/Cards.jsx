@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
 import "../../App.css";
+import { motion } from "framer-motion";
 
 export const Cards = () => {
   const [prendas, setPrendas] = useState([]);
