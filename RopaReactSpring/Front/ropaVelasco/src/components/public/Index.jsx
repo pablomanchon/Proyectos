@@ -116,7 +116,7 @@ export const Index = () => {
             }}
             whileInView={{
               opacity: 1,
-              x: 400,
+              x: 0,
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
             }}>
             <Item prenda={prenda} />
