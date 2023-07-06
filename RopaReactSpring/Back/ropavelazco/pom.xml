@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ropa</groupId>
-	<artifactId>ropa-mountain</artifactId>
+	<artifactId>ropavelazco</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ropa-mountain</name>
 	<description>Demo project for Spring Boot</description>
