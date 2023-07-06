@@ -26,6 +26,7 @@ export const Index = () => {
   };
 
   const getRandomObjects = () => {
+    console.log(prendas);
     const arrayMezclado = prendas.sort(() => 0.5 - Math.random());
     return arrayMezclado.splice(0, 2);
   };
@@ -116,7 +117,7 @@ export const Index = () => {
             }}
             whileInView={{
               opacity: 1,
-              x: 400,
+              x: 0,
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s",
             }}>
             <Item prenda={prenda} />

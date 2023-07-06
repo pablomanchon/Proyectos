@@ -8,21 +8,23 @@ export const Header = () => {
           whileInView={{
             rotate: -5,
             scale: 1.2,
+            x: 100,
           }}
           whileHover={{
             scale: 1.5,
           }}>
-          Home
+          <a href="/">Home</a>
         </motion.li>
         <motion.li
           whileInView={{
             rotate: 5,
             scale: 1.2,
+            x: -100,
           }}
           whileHover={{
             scale: 1.5,
           }}>
-          Prendas
+          <a href="/prendas">Prendas</a>
         </motion.li>
       </ul>
       <div className="logo-nombre">
@@ -36,22 +38,24 @@ export const Header = () => {
         <motion.li
           whileInView={{
             rotate: -5,
+            x: 100,
             scale: 1.2,
           }}
           whileHover={{
             scale: 1.5,
           }}>
-          Iniciar Sesion
+          <a href="#">Iniciar Sesion</a>
         </motion.li>
         <motion.li
           whileInView={{
             rotate: 5,
             scale: 1.2,
+            x: -100,
           }}
           whileHover={{
             scale: 1.5,
           }}>
-          Perfil
+          <a href="#">Perfil</a>
         </motion.li>
       </ul>
     </header>

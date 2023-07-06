@@ -6,8 +6,10 @@
   min-width: 35rem;
 }
 
-$cardColor: rgb(85, 58, 26);
-$textCard: rgb(255, 207, 159);
+$cardColor: rgb(255, 207, 159);
+$textCard: black;
+$cardShadow: (inset 0 0 2rem black);
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,22 +41,28 @@ $textCard: rgb(255, 207, 159);
   }
 }
 .cartas {
+  padding: 1rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 23.5rem), 1fr));
 }
+.precio-botones {
+  width: 100%;
+}
 .card {
-  padding: 2em;
+  padding-bottom: 2rem;
   font-size: 20px;
   background-color: $cardColor;
-  box-shadow: 0 0 5px white;
+  box-shadow: $cardShadow;
   color: $textCard;
   border-radius: 1rem;
+  border: none;
 }
 
 .card img {
-  border-radius: 50%;
-  width: 50%;
+  border-radius: 1rem 1rem 0.5rem 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .read-the-docs {
@@ -82,14 +90,16 @@ $textCard: rgb(255, 207, 159);
 }
 
 .image img {
-  width: 15rem;
+  width: 100%;
   border-radius: 1rem;
   box-shadow: 0px 0px 8px black;
+  position: relative;
 }
 .carousel-item {
   .cartas {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
     width: 100%;
     min-width: 35rem;
@@ -101,9 +111,9 @@ $textCard: rgb(255, 207, 159);
 }
 
 .item-car {
-  box-shadow: 0 0 15px black;
+  box-shadow: $cardShadow;
   border-radius: 1rem;
-  padding: 2rem;
+  padding-right: 2rem;
   display: flex;
   gap: 1rem;
   background-color: $cardColor;
@@ -112,14 +122,19 @@ $textCard: rgb(255, 207, 159);
     color: $textCard;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     h3 {
       font-size: 20px;
     }
     #titulo {
       font-weight: 800;
+      font-size: 30px;
     }
     ul {
+      font-size: 18px;
+      box-shadow: $cardShadow;
+      border-radius: 3rem;
+      padding: 2rem;
       list-style: none;
       text-align: left;
     }
@@ -129,30 +144,28 @@ $textCard: rgb(255, 207, 159);
   color: green;
   font-size: 3rem;
 }
-.boton-carrito {
+.boton-carrito,
+.boton-detalles {
   font-weight: 700;
-  background-color: rgb(7, 90, 7);
   border: none;
   transition: 0.4s;
+  height: 100%;
   &:hover {
     box-shadow: 0 0 8px $textCard;
   }
 }
+.boton-carrito {
+  background-color: rgb(7, 90, 7);
+}
 .boton-detalles {
-  font-weight: 700;
   background-color: rgb(72, 72, 72);
-  border: none;
-  transition: 0.4s;
-  &:hover {
-    box-shadow: 0 0 8px $textCard;
-  }
 }
 .botones {
   display: flex;
-  justify-content: center;
   gap: 1rem;
 }
 header {
+  margin-top: auto;
   padding: 1rem;
   display: flex;
   color: white;
@@ -169,10 +182,14 @@ header {
     flex-direction: column;
     gap: 1rem;
     li {
-      font-family: "Amatic SC", cursive;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: 0.4s;
+      a {
+        font-size: 2rem;
+        font-family: "Amatic SC", cursive;
+        color: white;
+        &:hover {
+          color: white;
+        }
+      }
     }
   }
   .logo-nombre {
@@ -199,12 +216,119 @@ header {
 .prueba {
   color: white;
 }
+.prenda {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: white;
+  .imagenes {
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .image {
+      border-radius: 50%;
+      width: 8rem;
+      cursor: pointer;
+      transition: 0.4s;
+      &:hover {
+        box-shadow: 0 0 15px white;
+      }
+    }
+  }
+  .caracteristicas {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-direction: column;
+    background-color: rgb(255, 207, 159);
+    color: black;
+    box-shadow: inset 0 0 110px 0 #0c0c0c;
+    padding: 2rem 0;
+    border-radius: 1rem;
+  }
+  .boton-carrito {
+    width: 80%;
+  }
+  h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+  #titulo {
+    font-weight: 800;
+    font-size: 30px;
+  }
+  ul {
+    font-size: 20px;
+    box-shadow: $cardShadow;
+    border-radius: 2rem;
+    padding: 1rem;
+    list-style: none;
+    text-align: center;
+    li {
+      font-weight: 800;
+    }
+  }
+  img {
+    cursor: none;
+    width: 40rem;
+    border-radius: 1rem;
+  }
+}
+.zoom-container {
+  position: relative;
+  display: inline-block;
+}
+
+.zoom-image {
+  display: block;
+}
+
+.zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  /* Ajusta el ancho de la lupa según tus necesidades */
+  height: 150px;
+  /* Ajusta la altura de la lupa según tus necesidades */
+  border: 2px solid #000;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 1030px) {
+  header {
+    flex-direction: column;
+    .logo-nombre {
+      order: -1;
+    }
+  }
+  .prenda {
+    flex-direction: column;
+    .imagenes {
+      flex-direction: row;
+    }
+    .caracteristicas {
+      padding: 2rem;
+    }
+  }
+}
 @media (max-width: 768px) {
   .item-car {
     flex-direction: column;
+    padding: 0 0 2rem 0;
     .caracteristicas {
       ul {
         text-align: center;
+        margin: 0 1rem;
       }
     }
   }
@@ -216,10 +340,20 @@ header {
   .card-right {
     min-width: 30rem;
   }
-  header {
-    flex-direction: column;
-    .logo-nombre {
-      order: -1;
-    }
-  }
+}
+.ejemplo {
+  color: white;
+  margin-top: 2rem;
+  align-self: center;
+}
+.circulo {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: white;
+  margin: auto;
+  margin-top: 2rem;
+}
+.rojo {
+  background-color: red;
 }

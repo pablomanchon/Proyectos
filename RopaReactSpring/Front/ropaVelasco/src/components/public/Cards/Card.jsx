@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { motion } from "framer-motion";
-import "../../App.css";
 
 export const Card = ({ prenda }) => {
   return (
@@ -14,7 +13,9 @@ export const Card = ({ prenda }) => {
         </motion.div>
         <div className="botones">
           <button className="boton-carrito">Agregar al carrito</button>
-          <button className="boton-detalles">Detalles</button>
+          <a href={`/prenda/${prenda.id}`}>
+            <button className="boton-detalles">Detalles</button>
+          </a>
         </div>
       </motion.div>
     </>
