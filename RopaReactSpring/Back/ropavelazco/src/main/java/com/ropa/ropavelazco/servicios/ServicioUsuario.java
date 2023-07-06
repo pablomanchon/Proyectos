@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicioUsuario implements UserDetailsService {
+public class ServicioUsuario {
     @Autowired
     RepositorioUsuario repositorioUsuario;
 
@@ -33,10 +33,9 @@ public class ServicioUsuario implements UserDetailsService {
         return repositorioUsuario.save(usuario);
     }
 
-    @Override
+    /*@Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         try {
-            System.out.println(email + "Usuariooo");
             Optional<Usuario> resUsuario = repositorioUsuario.findByNombre(email);
             Usuario usuario = new Usuario();
 
@@ -51,7 +50,6 @@ public class ServicioUsuario implements UserDetailsService {
                 return new User(usuario.getEmail(), usuario.getPassword(), permisos);
             } else {
                 resUsuario = repositorioUsuario.findByEmail(email);
-                System.out.println(resUsuario.isPresent());
                 if (resUsuario.isPresent()) {
                     usuario = resUsuario.get();
                     List<GrantedAuthority> permisos = new ArrayList<>();
@@ -67,7 +65,7 @@ public class ServicioUsuario implements UserDetailsService {
             System.out.println(e.getMessage());
         }
         return null;
-    }
+    }*/
 
     public Usuario buscarPorId(String id) {
         return repositorioUsuario.findById(id).orElse(null);
