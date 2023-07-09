@@ -7,3 +7,7 @@ export const getCards = async () => {
 export const getById = async (id) => {
   return await axios.get(`http://localhost:8080/prendas/${id}`);
 };
+
+export const registrar = (username) => {
+  console.log(username);
+};

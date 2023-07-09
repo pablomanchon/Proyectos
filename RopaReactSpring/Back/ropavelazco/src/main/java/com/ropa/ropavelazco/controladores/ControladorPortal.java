@@ -5,7 +5,7 @@ import com.ropa.ropavelazco.excepciones.MiExcepcion;
 import com.ropa.ropavelazco.repositorios.RepositorioUsuario;
 import com.ropa.ropavelazco.servicios.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +17,7 @@ public class ControladorPortal {
     @Autowired
     RepositorioUsuario repoUsuario;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/index")
     public String index() {
         return "index.html";
@@ -29,7 +30,6 @@ public class ControladorPortal {
 
     @PostMapping("/registrar")
     public Usuario registrar(@RequestBody Usuario newUser, String password2) {
-
         try {
             return servicioUsuario.registrarUsuario(newUser, password2);
         } catch (MiExcepcion e) {
