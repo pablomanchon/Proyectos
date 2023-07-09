@@ -1,19 +1,27 @@
 import { useState } from "react";
-import { registrar } from "../../services/Repository";
+import axios from "axios";
 
 export const Registro = () => {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    password: "",
-    password2: "",
-  });
+  const [formData, setFormData] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/registrar", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
   };
+
   return (
-    <form onSubmit={registrar()} id="autenticacion">
+    <form onSubmit={handleSubmit} id="autenticacion">
       <div>
         <label>Usuario</label>
         <input
@@ -44,6 +52,7 @@ export const Registro = () => {
       <div>
         <label>Repetir Password</label>
         <input
+          onChange={handleChange}
           type="password"
           placeholder="Repetir Password"
           name="password2"

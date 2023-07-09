@@ -5,6 +5,7 @@ import "./App.css";
 import { Header } from "./components/public/Header";
 import { Prenda } from "./components/public/Prenda";
 import { Registro } from "./components/public/Registro";
+import { Login } from "./components/public/Login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/prendas" element={<Cards />} />
           <Route exact path="/prenda/:id" element={<Prenda />} />
           <Route exact path="/registrar" element={<Registro />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>

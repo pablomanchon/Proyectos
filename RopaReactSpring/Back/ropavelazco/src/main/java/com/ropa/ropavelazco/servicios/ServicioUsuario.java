@@ -1,6 +1,7 @@
 package com.ropa.ropavelazco.servicios;
 
 import com.ropa.ropavelazco.entidades.Usuario;
+import com.ropa.ropavelazco.entidades.newUsuario;
 import com.ropa.ropavelazco.enums.Rol;
 import com.ropa.ropavelazco.excepciones.MiExcepcion;
 import com.ropa.ropavelazco.repositorios.RepositorioUsuario;
@@ -26,17 +27,20 @@ public class ServicioUsuario implements UserDetailsService {
     @Autowired
     RepositorioUsuario repositorioUsuario;
 
-    public Usuario registrarUsuario(Usuario usuario, String password2) throws MiExcepcion {
-        validar(usuario, password2);
-        usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
-        usuario.setRol(Rol.USER);
-        return repositorioUsuario.save(usuario);
+    public Usuario registrarUsuario(newUsuario newUser) throws MiExcepcion {
+        validar(newUser);
+        Usuario user = new Usuario();
+        user.setNombre(newUser.getNombre());
+        user.setEmail(newUser.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
+        user.setRol(Rol.USER);
+        repositorioUsuario.save(user);
+        return null;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         try {
-            System.out.println(email + "Usuariooo");
             Optional<Usuario> resUsuario = repositorioUsuario.findByNombre(email);
             Usuario usuario = new Usuario();
 
@@ -51,7 +55,6 @@ public class ServicioUsuario implements UserDetailsService {
                 return new User(usuario.getEmail(), usuario.getPassword(), permisos);
             } else {
                 resUsuario = repositorioUsuario.findByEmail(email);
-                System.out.println(resUsuario.isPresent());
                 if (resUsuario.isPresent()) {
                     usuario = resUsuario.get();
                     List<GrantedAuthority> permisos = new ArrayList<>();
@@ -78,7 +81,7 @@ public class ServicioUsuario implements UserDetailsService {
     }
 
 
-    private void validar(Usuario usuario, String password2) throws MiExcepcion {
+    private void validar(newUsuario usuario) throws MiExcepcion {
         if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
             throw new MiExcepcion("Debe poner nombre de usuario");
         }
@@ -91,7 +94,7 @@ public class ServicioUsuario implements UserDetailsService {
         if (usuario.getPassword() == null || usuario.getPassword().length() <= 5) {
             throw new MiExcepcion("La contraseña no puede estar vacía y debe tener mas de 5 digitos");
         }
-        if (!password2.equals(usuario.getPassword())) {
+        if (!usuario.getPassword2().equals(usuario.getPassword())) {
             throw new MiExcepcion("Las contraseñas no coinciden");
         }
     }

@@ -44,7 +44,7 @@ export const Header = () => {
           whileHover={{
             scale: 1.5,
           }}>
-          <a href="#">Iniciar Sesion</a>
+          <a href="/login">Iniciar Sesion</a>
         </motion.li>
         <motion.li
           whileInView={{

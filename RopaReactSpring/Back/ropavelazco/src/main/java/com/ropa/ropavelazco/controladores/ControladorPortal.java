@@ -1,6 +1,7 @@
 package com.ropa.ropavelazco.controladores;
 
 import com.ropa.ropavelazco.entidades.Usuario;
+import com.ropa.ropavelazco.entidades.newUsuario;
 import com.ropa.ropavelazco.excepciones.MiExcepcion;
 import com.ropa.ropavelazco.repositorios.RepositorioUsuario;
 import com.ropa.ropavelazco.servicios.ServicioUsuario;
@@ -23,17 +24,16 @@ public class ControladorPortal {
         return "index.html";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login.html";
-    }
 
     @PostMapping("/registrar")
-    public Usuario registrar(@RequestBody Usuario newUser, String password2) {
+    public Usuario registrar(@RequestBody newUsuario newUser) {
         try {
-            return servicioUsuario.registrarUsuario(newUser, password2);
-        } catch (MiExcepcion e) {
-            throw new RuntimeException(e);
+            System.out.println(newUser.getPassword());
+            System.out.println(newUser.getPassword2());
+            return servicioUsuario.registrarUsuario(newUser);
+        }
+        catch (MiExcepcion e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
