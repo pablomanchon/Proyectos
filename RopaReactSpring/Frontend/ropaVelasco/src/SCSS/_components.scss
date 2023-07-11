@@ -1,0 +1,133 @@
+@use "mixins" as m;
+
+$cardColor: rgb(255, 207, 159);
+$cardShadow: (inset 0 0 2rem black);
+$textCard: black;
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  font-size: 20px;
+  background-color: $cardColor;
+  box-shadow: $cardShadow;
+  color: $textCard;
+  border-radius: 1rem;
+  border: none;
+  img {
+    border-radius: 1rem 1rem 0.5rem 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+.carousel-item {
+  .cartas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    min-width: 35rem;
+    .card-left {
+      @include m.cardsCarousel(flex-end);
+    }
+    .card-right {
+      @include m.cardsCarousel(flex-start);
+    }
+  }
+  section {
+    height: auto;
+    background-color: black;
+  }
+}
+
+.item-car {
+  box-shadow: $cardShadow;
+  border-radius: 1rem;
+  padding-right: 2rem;
+  display: flex;
+  gap: 1rem;
+  background-color: $cardColor;
+  justify-content: space-evenly;
+  .caracteristicas {
+    color: $textCard;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h3 {
+      font-size: 20px;
+    }
+    #titulo {
+      font-weight: 800;
+      font-size: 30px;
+    }
+    ul {
+      font-size: 18px;
+      box-shadow: $cardShadow;
+      border-radius: 3rem;
+      padding: 2rem;
+      list-style: none;
+      text-align: left;
+    }
+  }
+}
+.boton-carrito {
+  @include m.botonCarrito(green, $textCard);
+}
+.cartas {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 23.5rem), 1fr));
+  section {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    background: rgb(150, 96, 73);
+  }
+}
+
+section span {
+  display: block;
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+.zoom-container {
+  position: relative;
+  display: inline-block;
+}
+
+.zoom-image {
+  display: block;
+}
+
+.zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  /* Ajusta el ancho de la lupa según tus necesidades */
+  height: 150px;
+  /* Ajusta la altura de la lupa según tus necesidades */
+  border: 2px solid #000;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: opacity 0.3s ease;
+}

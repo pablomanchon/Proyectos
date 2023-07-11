@@ -9,29 +9,10 @@ button {
   cursor: pointer;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  min-width: 35rem;
+.card {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-}
-
-.cartas {
-  padding: 1rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 23.5rem), 1fr));
-}
-
-.precio-botones {
-  width: 100%;
-}
-
-.card {
+  align-items: center;
   padding-bottom: 2rem;
   font-size: 20px;
   background-color: rgb(255, 207, 159);
@@ -40,40 +21,10 @@ button {
   border-radius: 1rem;
   border: none;
 }
-
 .card img {
   border-radius: 1rem 1rem 0.5rem 0.5rem;
   width: 100%;
   margin-bottom: 1rem;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.section:nth-child(1) {
-  align-self: left;
-}
-
-.section {
-  align-items: center;
-}
-
-.card-left,
-.card-right {
-  width: 70%;
-  min-width: 50rem;
-}
-
-.card-right {
-  align-self: flex-start;
-}
-
-.image img {
-  width: 35rem;
-  border-radius: 1rem;
-  box-shadow: 0px 0px 8px black;
-  position: relative;
 }
 
 .carousel-item .cartas {
@@ -83,6 +34,16 @@ button {
   gap: 2rem;
   width: 100%;
   min-width: 35rem;
+}
+.carousel-item .cartas .card-left {
+  width: 70%;
+  min-width: 50rem;
+  align-self: flex-end;
+}
+.carousel-item .cartas .card-right {
+  width: 70%;
+  min-width: 50rem;
+  align-self: flex-start;
 }
 .carousel-item section {
   height: auto;
@@ -120,34 +81,83 @@ button {
   text-align: left;
 }
 
-#precio {
-  color: green;
-  font-size: 3rem;
-}
-
-.boton-carrito,
-.boton-detalles {
+.boton-carrito {
   font-weight: 700;
   border: none;
   transition: 0.4s;
   height: 100%;
+  background-color: green;
 }
-.boton-carrito:hover,
-.boton-detalles:hover {
+.boton-carrito:hover {
   box-shadow: 0 0 8px black;
 }
 
-.boton-carrito {
-  background-color: rgb(7, 90, 7);
-}
-
-.boton-detalles {
-  background-color: rgb(72, 72, 72);
-}
-
-.botones {
-  display: flex;
+.cartas {
+  padding: 1rem;
+  display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 23.5rem), 1fr));
+}
+.cartas section {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: rgb(150, 96, 73);
+}
+
+section span {
+  display: block;
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+.zoom-container {
+  position: relative;
+  display: inline-block;
+}
+
+.zoom-image {
+  display: block;
+}
+
+.zoom-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  /* Ajusta el ancho de la lupa según tus necesidades */
+  height: 150px;
+  /* Ajusta la altura de la lupa según tus necesidades */
+  border: 2px solid #000;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: opacity 0.3s ease;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  min-width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+* {
+  font-weight: 700;
+  font-family: "Inter-Bold", "Inter", sans-serif;
+}
+
+body {
+  background-color: black;
 }
 
 header {
@@ -195,6 +205,35 @@ header .logo-nombre #nombre {
 }
 header .logo-nombre #nombre span {
   font-family: "Amatic SC", cursive;
+}
+
+a {
+  text-decoration: none;
+}
+
+#precio {
+  color: green;
+  font-size: 3rem;
+}
+
+.image img {
+  width: 35rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 8px black;
+  position: relative;
+}
+
+.precio-botones {
+  width: 100%;
+}
+
+.boton-detalles {
+  background-color: rgb(72, 72, 72);
+}
+
+.botones {
+  display: flex;
+  gap: 1rem;
 }
 
 #search {
@@ -290,74 +329,6 @@ header .logo-nombre #nombre span {
   border-radius: 1rem;
 }
 
-.zoom-container {
-  position: relative;
-  display: inline-block;
-}
-
-.zoom-image {
-  display: block;
-}
-
-.zoom-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  /* Ajusta el ancho de la lupa según tus necesidades */
-  height: 150px;
-  /* Ajusta la altura de la lupa según tus necesidades */
-  border: 2px solid #000;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  transition: opacity 0.3s ease;
-}
-
-@media (max-width: 1030px) {
-  header {
-    flex-direction: column;
-  }
-  header .logo-nombre {
-    order: -1;
-  }
-  .prenda {
-    flex-direction: column;
-  }
-  .prenda .imagenes {
-    flex-direction: row;
-  }
-  .prenda .caracteristicas {
-    padding: 2rem;
-  }
-  .item-car img {
-    width: 100%;
-  }
-}
-@media (max-width: 768px) {
-  .item-car {
-    flex-direction: column;
-    padding: 0 0 2rem 0;
-  }
-  .item-car .caracteristicas ul {
-    text-align: center;
-    margin: 0 1rem;
-  }
-  .botones {
-    flex-direction: column;
-    margin: 0 2rem;
-  }
-  .card-left,
-  .card-right {
-    min-width: 30rem;
-  }
-  footer {
-    flex-direction: column;
-  }
-}
 #autenticacion {
   box-shadow: inset 0 0 2rem black;
   margin: auto;
@@ -461,4 +432,46 @@ footer ul .bi-instagram:hover {
 }
 footer .nav-link {
   color: white;
+}
+
+@media (max-width: 1030px) {
+  header {
+    flex-direction: column;
+  }
+  header .logo-nombre {
+    order: -1;
+  }
+  .prenda {
+    flex-direction: column;
+  }
+  .prenda .imagenes {
+    flex-direction: row;
+  }
+  .prenda .caracteristicas {
+    padding: 2rem;
+  }
+  .item-car img {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .item-car {
+    flex-direction: column;
+    padding: 0 0 2rem 0;
+  }
+  .item-car .caracteristicas ul {
+    text-align: center;
+    margin: 0 1rem;
+  }
+  .botones {
+    flex-direction: column;
+    margin: 0 2rem;
+  }
+  .card-left,
+  .card-right {
+    min-width: 30rem;
+  }
+  footer {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=App.css.map */
