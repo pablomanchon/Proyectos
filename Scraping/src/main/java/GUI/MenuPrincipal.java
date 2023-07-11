@@ -415,7 +415,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
                 precioLbl.setText("Precio: $" + String.valueOf(prenda.getPrecio()));
                 marcaLbl.setText("Marca: " + prenda.getMarca());
 
-                ArrayList<String> carList = prenda.getCaracteristicas();
+                List<String> carList = prenda.getCaracteristicas();
                 String caracteristicas = "";
                 caracteristicasPanel.removeAll();
                 for (String car : carList) {

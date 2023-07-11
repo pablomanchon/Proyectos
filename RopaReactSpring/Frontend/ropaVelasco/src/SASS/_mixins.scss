@@ -1,0 +1,8 @@
+@mixin iconsFooter($color: rgb(19, 139, 195)) {
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  transition: 0.4s;
+  &:hover {
+    background-color: $color;
+  }
+}

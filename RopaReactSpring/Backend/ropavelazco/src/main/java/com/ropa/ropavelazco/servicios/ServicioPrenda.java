@@ -5,6 +5,7 @@ import com.ropa.ropavelazco.repositorios.RepositorioPrenda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,10 @@ public class ServicioPrenda {
     }
     public Prenda crearPrenda(Prenda prenda){
         return repositorioPrenda.save(prenda);
+    }
+
+    public List<Prenda> buscarPorTermino(String termino){
+        List <Prenda> prendas = repositorioPrenda.buscarPorTermino(termino);
+        return prendas;
     }
 }

@@ -25,7 +25,7 @@ public class Control {
 
     public void ActualizarElementos() {
         String bendita = "https://www.benditabodega.cl";
-        for (int y = 1; y <= 2; y++) {
+        for (int y = 1; y <= 3; y++) {
             String pagina = "/search?q=northland&page=" + y;
             String html = bendita + pagina;
             System.out.println("PAGINA " + y);
@@ -49,9 +49,9 @@ public class Control {
 
                     String ID = extraerID(nombreYID);
 
-                    ArrayList<String> caracteristicas = extraerCaracteristicas(elProducto);
+                    List<String> caracteristicas = extraerCaracteristicas(elProducto);
 
-                    ArrayList<String> imagenes = extraerImagen(elProducto);
+                    List<String> imagenes = extraerImagen(elProducto);
 
                     prendas.add(new Prenda(nombre, marca, precio, imagenes, caracteristicas));
                 }
@@ -78,9 +78,9 @@ public class Control {
         }
     }
 
-    private ArrayList<String> extraerImagen(Elements elProducto) {
+    private List<String> extraerImagen(Elements elProducto) {
         Elements fotosEl = elProducto.get(1).getElementsByClass("trsn w-100");
-        ArrayList<String> fotos = new ArrayList<>();
+        List<String> fotos = new ArrayList<>();
         for(Element foto : fotosEl) {
             fotos.add(foto.attr("src"));
         }

@@ -3,35 +3,41 @@ import { useEffect, useRef, useState } from "react";
 import { Item } from "./Item";
 import Section from "./Section";
 import { motion } from "framer-motion";
+import { getRandomCards } from "../../services/Repository";
 
 export const Index = () => {
-  const [prendas, setPrendas] = useState([]);
+  const [prendas1, setPrendas1] = useState([]);
+  const [prendas2, setPrendas2] = useState([]);
+  const [prendas3, setPrendas3] = useState([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef(null);
 
   useEffect(() => {
-    getCards();
-  }, []);
-
-  const getCards = () => {
-    axios
-      .get("http://localhost:8080/prendas/lista")
+    getRandomCards()
       .then((response) => {
-        setPrendas(response.data);
+        setPrendas1(response.data);
         setLoading(false);
       })
       .catch(() => {
         alert("Error al conectar con la Base de Datos");
       });
-  };
-
-  const getRandomObjects = () => {
-    console.log(prendas);
-    const arrayMezclado = prendas.sort(() => 0.5 - Math.random());
-    return arrayMezclado.splice(0, 2);
-  };
-
-  const randomObjects = getRandomObjects();
+    getRandomCards()
+      .then((response) => {
+        setPrendas2(response.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        alert("Error al conectar con la Base de Datos");
+      });
+    getRandomCards()
+      .then((response) => {
+        setPrendas3(response.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        alert("Error al conectar con la Base de Datos");
+      });
+  }, []);
 
   if (loading) {
     return (
@@ -70,13 +76,13 @@ export const Index = () => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item">
-            <Section>{mostrarPrendasCarrousel()}</Section>
+            <Section>{prendasCarrousel(prendas1)}</Section>
           </div>
           <div className="carousel-item active">
-            <Section>{mostrarPrendasCarrousel()}</Section>
+            <Section>{prendasCarrousel(prendas2)}</Section>
           </div>
           <div className="carousel-item">
-            <Section>{mostrarPrendasCarrousel()}</Section>
+            <Section>{prendasCarrousel(prendas3)}</Section>
           </div>
         </div>
         <button
@@ -103,8 +109,8 @@ export const Index = () => {
     </>
   );
 
-  function mostrarPrendasCarrousel() {
-    return randomObjects.map((prenda, i) => {
+  function prendasCarrousel(prendas) {
+    return prendas.map((prenda, i) => {
       if ((i + 1) % 2 == 0) {
         return (
           <motion.div

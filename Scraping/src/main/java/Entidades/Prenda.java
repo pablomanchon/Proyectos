@@ -3,6 +3,8 @@ package Entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,19 +20,25 @@ public class Prenda implements Serializable {
     private String nombre;
     private String marca;
     private Float precio;
-    private ArrayList<String> imagenes;
-    ArrayList<String> caracteristicas;
+    @Column
+    @ElementCollection
+    private List<String> caracteristicas = new ArrayList<String>();
+    @Column
+    @ElementCollection
+    List<String> imagenes = new ArrayList<String>();
 
     public Prenda() {
     }
 
-    public Prenda(String nombre, String marca, Float precio, ArrayList<String> imagenes, ArrayList<String> caracteristicas) {
+    public Prenda(String nombre, String marca, Float precio, List<String> imagenes, List<String> caracteristicas) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
-        this.imagenes = imagenes;
         this.caracteristicas = caracteristicas;
+        this.imagenes = imagenes;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -64,19 +72,21 @@ public class Prenda implements Serializable {
         this.precio = precio;
     }
 
-    public ArrayList<String> getImagenes() {
-        return imagenes;
-    }
-
-    public void setImagenes(ArrayList<String> imagenes) {
-        this.imagenes = imagenes;
-    }
-
-    public ArrayList<String> getCaracteristicas() {
+    public List<String> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
+    public void setCaracteristicas(List<String> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
+
+    public List<String> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<String> imagenes) {
+        this.imagenes = imagenes;
+    }
+
+   
 }

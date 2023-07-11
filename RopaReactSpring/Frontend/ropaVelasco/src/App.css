@@ -1,40 +1,25 @@
 @charset "UTF-8";
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
   width: 100%;
   min-width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.6666666667));
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.6666666667));
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 .cartas {
   padding: 1rem;
   display: grid;
@@ -81,15 +66,11 @@
 }
 
 .card-right {
-  align-self: flex-end;
-}
-
-.card-right {
   align-self: flex-start;
 }
 
 .image img {
-  width: 100%;
+  width: 35rem;
   border-radius: 1rem;
   box-shadow: 0px 0px 8px black;
   position: relative;
@@ -176,14 +157,12 @@ header {
   color: white;
   justify-content: space-evenly;
   align-items: center;
-}
-header hr {
-  color: white;
-  width: 2rem;
+  border-bottom: 1px solid white;
 }
 header .menu {
   list-style: none;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 1rem;
 }
@@ -191,12 +170,14 @@ header .menu li a {
   font-size: 2rem;
   font-family: "Amatic SC", cursive;
   color: white;
+  width: 19rem;
 }
 header .menu li a:hover {
   color: white;
 }
 header .logo-nombre {
   display: flex;
+  justify-content: center;
 }
 header .logo-nombre #nombre {
   font-size: 6rem;
@@ -216,8 +197,35 @@ header .logo-nombre #nombre span {
   font-family: "Amatic SC", cursive;
 }
 
-.prueba {
+#search {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+#search i {
+  padding: 1rem;
+  border-radius: 50%;
+  border-left: 1px solid black;
   color: white;
+  background-color: #3b3b3b;
+  font-size: 25px;
+  cursor: pointer;
+}
+#search input {
+  outline: none;
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 25px;
+  color: grey;
+  transition: 0.3s;
+}
+#search input:hover {
+  box-shadow: 0 0 15px white;
+}
+#search input:focus {
+  background-color: white;
+  box-shadow: 0 0 10px white, inset 0 0 15px green;
 }
 
 .prenda {
@@ -246,12 +254,12 @@ header .logo-nombre #nombre span {
 .prenda .caracteristicas {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   flex-direction: column;
   background-color: rgb(255, 207, 159);
   color: black;
   box-shadow: inset 0 0 110px 0 #0c0c0c;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   border-radius: 1rem;
 }
 .prenda .boton-carrito {
@@ -325,6 +333,9 @@ header .logo-nombre #nombre span {
   .prenda .caracteristicas {
     padding: 2rem;
   }
+  .item-car img {
+    width: 100%;
+  }
 }
 @media (max-width: 768px) {
   .item-car {
@@ -342,6 +353,9 @@ header .logo-nombre #nombre span {
   .card-left,
   .card-right {
     min-width: 30rem;
+  }
+  footer {
+    flex-direction: column;
   }
 }
 #autenticacion {
@@ -388,4 +402,63 @@ header .logo-nombre #nombre span {
 #autenticacion .botones a {
   font-weight: 700;
   border: none;
+}
+
+footer {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-top: 1px solid white;
+  color: white;
+}
+footer div {
+  display: flex;
+  gap: 1rem;
+  font-size: 20px;
+}
+footer i {
+  color: white;
+  font-size: 25px;
+}
+footer ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+}
+footer ul .bi-whatsapp {
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+footer ul .bi-whatsapp:hover {
+  background-color: green;
+}
+footer ul .bi-facebook {
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+footer ul .bi-facebook:hover {
+  background-color: rgb(49, 49, 247);
+}
+footer ul .bi-twitter {
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+footer ul .bi-twitter:hover {
+  background-color: rgb(19, 139, 195);
+}
+footer ul .bi-instagram {
+  padding: 0.8rem 1rem;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+footer ul .bi-instagram:hover {
+  background-color: rgb(223, 68, 153);
+}
+footer .nav-link {
+  color: white;
 }/*# sourceMappingURL=App.css.map */

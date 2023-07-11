@@ -59,6 +59,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 .and().formLogin()
+                .loginPage("http://localhost:5173/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")

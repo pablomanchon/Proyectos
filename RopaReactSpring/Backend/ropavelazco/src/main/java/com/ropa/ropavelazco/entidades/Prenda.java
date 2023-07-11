@@ -3,6 +3,7 @@ package com.ropa.ropavelazco.entidades;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Prenda implements Serializable {
@@ -13,9 +14,13 @@ public class Prenda implements Serializable {
     private String nombre;
     private String marca;
     private double precio;
-    private ArrayList<String> imagenes;
 
-    ArrayList<String> caracteristicas;
+    @ElementCollection
+    private List<String> imagenes = new ArrayList<String>();
+
+
+    @ElementCollection
+    List<String> caracteristicas = new ArrayList<String>();
 
     public Prenda() {
     }
@@ -61,19 +66,19 @@ public class Prenda implements Serializable {
         this.precio = precio;
     }
 
-    public ArrayList<String> getImagenes() {
+    public List<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<String> imagenes) {
+    public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
     }
 
-    public ArrayList<String> getCaracteristicas() {
+    public List<String> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(ArrayList<String> caracteristicas) {
+    public void setCaracteristicas(List<String> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 }
