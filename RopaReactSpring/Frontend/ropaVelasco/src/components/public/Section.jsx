@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import "../../styles.css";
 
 // eslint-disable-next-line react/prop-types
 function Section({ children }) {
