@@ -5,6 +5,7 @@ import com.ropa.ropavelazco.entidades.newUsuario;
 import com.ropa.ropavelazco.enums.Rol;
 import com.ropa.ropavelazco.excepciones.MiExcepcion;
 import com.ropa.ropavelazco.repositorios.RepositorioUsuario;
+import com.ropa.ropavelazco.token.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +27,8 @@ import java.util.Optional;
 public class ServicioUsuario implements UserDetailsService {
     @Autowired
     RepositorioUsuario repositorioUsuario;
+    @Autowired
+    JwtUtils jwtUtils;
 
     public Usuario registrarUsuario(newUsuario newUser) throws MiExcepcion {
         validar(newUser);
@@ -34,8 +37,7 @@ public class ServicioUsuario implements UserDetailsService {
         user.setEmail(newUser.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
         user.setRol(Rol.USER);
-        repositorioUsuario.save(user);
-        return null;
+        return repositorioUsuario.save(user);
     }
 
     @Override
@@ -43,15 +45,12 @@ public class ServicioUsuario implements UserDetailsService {
         try {
             Optional<Usuario> resUsuario = repositorioUsuario.findByNombre(email);
             Usuario usuario = new Usuario();
-
             if (resUsuario.isPresent()) {
                 usuario = resUsuario.get();
                 List<GrantedAuthority> permisos = new ArrayList<>();
                 GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
                 permisos.add(p);
                 ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-                HttpSession session = attr.getRequest().getSession(true);
-                session.setAttribute("usuariosession", usuario);
                 return new User(usuario.getEmail(), usuario.getPassword(), permisos);
             } else {
                 resUsuario = repositorioUsuario.findByEmail(email);
@@ -85,7 +84,7 @@ public class ServicioUsuario implements UserDetailsService {
         if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
             throw new MiExcepcion("Debe poner nombre de usuario");
         }
-        if (repositorioUsuario.findByNombre(usuario.getNombre()).isPresent()||repositorioUsuario.findByEmail(usuario.getEmail()).isPresent()){
+        if (repositorioUsuario.findByNombre(usuario.getNombre()).isPresent() || repositorioUsuario.findByEmail(usuario.getEmail()).isPresent()) {
             throw new MiExcepcion("El usuario ya existe");
         }
         if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {

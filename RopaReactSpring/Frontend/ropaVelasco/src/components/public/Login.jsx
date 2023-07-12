@@ -2,12 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 
 export const Login = () => {
-  const [formData, setFormData] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/logincheck", formData)
+      .post("http://localhost:8080/logincheck", { email, password })
       .then((response) => {
         console.log(response);
       })
@@ -16,20 +17,14 @@ export const Login = () => {
       });
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   return (
-    <form
-      method="POST"
-      action="http://localhost:8080/logincheck"
-      id="autenticacion">
+    <form onSubmit={handleSubmit} id="autenticacion">
       <div>
         <label>Usuario</label>
         <input
-          onChange={handleChange}
+          onChange={(e) => setEmail(e.target.value)}
           type="text"
+          value={email}
           placeholder="Usuario"
           name="email"
         />
@@ -37,7 +32,8 @@ export const Login = () => {
       <div>
         <label>Password</label>
         <input
-          onChange={handleChange}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           placeholder="Password"
           name="password"
